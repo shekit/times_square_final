@@ -12,11 +12,6 @@ $(document).ready(function(){
 
 	var queuedOutrages=[];
 
-	var queuedOutrageObj = {};
-
-	var queueNumber = 0;
-
-	var ul = $("#messages");
 
 	var smsDiv = $("#outrage");
 
@@ -30,9 +25,6 @@ $(document).ready(function(){
 
 	var queuedOutrageRunning = false;
 
-	var queuedOutrageCount = 0;
-
-	//var queuedInterval = null;
 
 	function runOutrageLoop(){
 		
@@ -69,12 +61,7 @@ $(document).ready(function(){
 			console.log("IN INTERVAL")
 			//console.log(outrageCount)
 			queuedOutrageRunning = true;
-			//smsDiv.html(queuedOutrageArray[queuedOutrageCount]);
 			smsDiv.html(queuedOutrageArray[0]["msg"])
-			// if(queuedOutrageCount >= queuedOutrageArray.length-1){
-			// 	runOutrageLoop();
-			// 	return;
-			// }
 			queuedOutrageArray.splice(0,1);
 
 			if(queuedOutrageArray.length == 0){
@@ -83,7 +70,6 @@ $(document).ready(function(){
 				return;
 			}
 			
-			//queuedOutrageCount++;
 		}, outrageTimerDuration);
 	}
 
@@ -91,7 +77,6 @@ $(document).ready(function(){
 		console.log("Stop queued array");
 		clearInterval(queuedInterval);
 		queuedOutrageRunning = false;
-		queuedOutrageCount = 0;
 	}
 
 	socket.on('sms', function(msg){

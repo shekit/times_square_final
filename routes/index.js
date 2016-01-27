@@ -28,6 +28,10 @@ router.post('/approve', function(req,res,next){
 	res.send("approved")
 })
 
+router.post('/reject', function(req, res, next){
+	res.send("reject")
+})
+
 router.get('/nimda', function(req, res, next){
 	res.render('admin')
 })

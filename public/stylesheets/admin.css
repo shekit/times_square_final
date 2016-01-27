@@ -1,0 +1,26 @@
+.form-control, .btn {
+	border-radius: 0;
+}
+
+.single-msg {
+	margin-bottom:30px;
+}
+
+.btn-wrapper {
+	position: relative;
+	height: 70px;
+}
+
+.sender-name {
+	margin-bottom: 30px;
+}
+
+.approve {
+	position: absolute;
+	left: 0;
+}
+
+.reject {
+	position: absolute;
+	right: 0;
+}

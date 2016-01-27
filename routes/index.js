@@ -15,12 +15,21 @@ router.post('/message', function(req, res, next){
 
 	//msg = msg.toLowerCase().trim();
 	io.emit("sms",msg);
+	io.emit("approval",msg)
 
 	console.log("Phone: " + phone);
 	console.log("Message: " + msg);
 
 	res.type('text/xml');
 	res.render('twiml');
+})
+
+router.post('/approve', function(req,res,next){
+	res.send("approved")
+})
+
+router.get('/nimda', function(req, res, next){
+	res.render('admin')
 })
 
 

@@ -1,5 +1,10 @@
 extends layout
 
+block style
+  link(rel='stylesheet', href='/stylesheets/style.css')
+  link(rel='stylesheet', type='text/css', href='https://fonts.googleapis.com/css?family=Anton')
+  link(rel='stylesheet', type='text/css', href='https://fonts.googleapis.com/css?family=Montserrat:400,700')
+
 block content
   h1 WHAT OUTRAGED YOU IN 2015?
   div(id="prompt")
@@ -10,3 +15,6 @@ block content
     ul(id="messages")
   div(id="collageDiv") 
     img(src='/images/outrage_collage.jpg')
+
+block javascript
+  script(src='/javascripts/global.js')

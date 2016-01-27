@@ -49,7 +49,7 @@ router.post('/approve', function(req,res,next){
 	
 
 	//send number of outrages to increment counter
-	io.emit("outrageCount", approvedOutrages.length);
+	io.emit("count", approvedOutrages.length);
 	console.log("APPROVED LIST")
 	console.log(approvedOutrages)
 	res.send("approved")

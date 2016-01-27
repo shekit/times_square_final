@@ -1,0 +1,49 @@
+body {
+  font-style: italic;
+  font: 32px "Anton", Arial, sans-serif;
+  text-align: center;
+  text-transform: uppercase;
+  font-style: italic;
+  letter-spacing: 1px;
+  line-height: 200%;
+  color: white;
+  background-color: #ed454c;
+  text-shadow: -12px 12px 0px rgba(0, 0, 0, .2);
+}
+
+a {
+  color: #00B7FF;
+}
+
+
+#prompt {
+  text-shadow: none;
+}
+
+
+#outrage {
+  text-shadow: none;
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  top: 300px;
+  left: 33%;
+  font: 12px Montserrat;
+  text-align:left;
+  line-height: 150%;
+  background:rgba(0, 0, 0, 0.25);
+  padding:15px;
+}
+
+#collageDiv {
+  position: absolute;
+  bottom: -20px;
+  left: -20px;
+  z-index:-1;
+  padding:0;
+}
+
+img {
+  width: 100%;
+}

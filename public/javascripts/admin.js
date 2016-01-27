@@ -3,7 +3,9 @@ $(document).ready(function(){
 
 	var url = "http://localhost:3000/"
 
-	socket.on('approval', function(msg){
+
+	//display incoming msgs when notified by server
+	socket.on('gotText', function(msg){
 
 		if(msg){
 			console.log("yay");
@@ -12,6 +14,7 @@ $(document).ready(function(){
 		}	
 	})
 
+	// approve sms
 	$("body").on('click', '.approve', function(event){
 		event.preventDefault();
 
@@ -39,6 +42,7 @@ $(document).ready(function(){
 
 	})
 
+	//reject sms
 	$("body").on("click", ".reject", function(event){
 		event.preventDefault();
 

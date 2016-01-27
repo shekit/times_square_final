@@ -1,6 +1,11 @@
 $(document).ready(function(){
 
-	var outrages = ["People suggesting we bar Syrian refugees from this country and the general racist fear-mongering that dominates the news.","Police brutality.", "Mark Zuckerberg's letter to his daughter","guns. civilians, police, anyone using a gun.","environmental disaster in brazil that was neglected by the media","stereotypical assumptions of some countries","Cecil the Lion did!"];
+	var outrages = [
+					{"name":"abhishek","msg":"People suggesting we bar Syrian refugees from this country and the general racist fear-mongering that dominates the news."},
+					{"name":"AJ", "msg":"Police brutality"},
+					{"name":"Rebecca", "msg":"Mark Zuckerberg's letter to his daughter"}
+				]
+
 	var outrageCount = 0;
 
 	var socket = io();
@@ -21,173 +26,6 @@ $(document).ready(function(){
 
 	smsDiv.html(outrages[0]);
 
-	// function runOutrageLoop(){
-	// 	outrageInterval = setInterval(function(){
-	// 		outrageLoopRunning = true;
-
-	// 		if(outrageCount >= outrages.length){
-	// 			outrageCount = 0;
-	// 			return
-	// 		}
-	// 		smsDiv.html(outrages[outrageCount]);
-	// 		outrageCount++;
-	// 	}, outrageTimerDuration)
-	// }
-
-	// function stopOutrageLoop(){
-	// 	clearInterval(outrageInterval);
-	// 	outrageLoopRunning = false;
-	// }
-
-	// socket.on('sms', function(msg){
-
-	// 	queuedOutrages.push(msg);
-
-	// })
-
-	// socket.on('sms', function(msg){
-	// 	stopOutrageLoop();
-	// 	outrages.push(msg);
-	// 	setTimeout(function(){
-	// 		smsDiv.html(msg);
-	// 		outrageCount++;
-	// 		if(!outrageLoopRunning){
-	// 			console.log("Restart loop");
-	// 			runOutrageLoop();
-	// 		}
-	// 	}, 5000)
-	// })
-
-	// runOutrageLoop();
-
-	// function runOutrageLoop(){
-
-	// 	outrageInterval = setInterval(function(){
-	// 		//console.log(outrageCount)
-	// 		outrageLoopRunning = true;
-
-	// 		if(outrageCount >= outrages.length){
-	// 			outrageCount = 0;
-	// 			return;
-	// 		}
-	// 		smsDiv.html(outrages[outrageCount]);
-	// 		outrageCount++;
-	// 	}, 1500);
-	// }
-
-	// socket.on("sms", function(msg){
-	// 	if(outrageLoopRunning){
-	// 		clearInterval(outrageInterval);
-	// 	}
-		
-	// 	outrageLoopRunning = false;
-	// 	queuedOutrages.push(msg);
-	// 	console.log(queuedOutrages.length);
-	// 	var key = queuedOutrages.indexOf(msg);
-	// 	if(queuedOutrages.length == 1){
-	// 		smsDiv.html(msg);
-	// 	} else {
-	// 		setTimeout(function(){
-	// 			smsDiv.html(msg);
-	// 		}, 1500*queuedOutrages.length);
-	// 	}
-	// 	outrages.push(msg);
-	// 	//queuedOutrages.splice(key,1);
-	// 	console.log(queuedOutrages.length);
-
-	// 	checkToRestartInterval(key);
-	// 	// outrages.push(msg);
-	// 	// console.log(msg)
-	// 	// smsDiv.html(msg);
-	// 	// outrages.push(msg);
-	// 	// queuedOutrages.push(msg);
-	// 	// if(queuedOutrage)
-	// 	// clearInterval(outrageInterval);
-	// 	// outrageCount=0;
-	// });
-
-	// function checkToRestartInterval(key){
-	// 	console.log("Checking to restart or not");
-	// 	setTimeout(function(){
-	// 		//queuedOutrages.splice(key,1);
-	// 		delete queuedOutrages[key];
-	// 		console.log(queuedOutrages.length);
-	// 		if(!outrageLoopRunning){
-	// 			console.log("restart loop");
-	// 			outrageCount = 0;
-	// 			runOutrageLoop();
-	// 		}
-	// 	}, 1500)
-	// }
-
-	// runOutrageLoop();
-
-	// function stopInterval(){
-	// 	clearInterval(outrageInterval);
-	// 	outrageLoopRunning = false;
-	// }
-
-	// function runOutrageLoop(){
-	// 	console.log("STARTED ARRAY LOOP");
-	// 	outrageInterval = setInterval(function(){
-	// 		//console.log(outrageCount)
-	// 		outrageLoopRunning = true;
-
-	// 		if(outrageCount >= outrages.length){
-	// 			outrageCount = 0;
-	// 			return;
-	// 		}
-	// 		smsDiv.html(outrages[outrageCount]);
-	// 		outrageCount++;
-	// 	}, outrageTimerDuration);
-	// }
-
-	// socket.on('sms', function(msg){
-	// 	console.log("GOT MSG");
-	// 	if(outrageLoopRunning){
-	// 		console.log("CLEAR INTERVAL");
-	// 		clearInterval(outrageInterval);
-	// 	}
-
-	// 	queueNumber++;
-	// 	console.log("CURRENT QUEUE NUMBER: "+queueNumber);
-	// 	queuedOutrageObj[queueNumber] = msg;
-
-	// 	if(queueNumber == 1){
-	// 		console.log("Display immediately");
-	// 		smsDiv.html(msg);
-	// 		checkToResetLoop(queueNumber,msg);
-	// 	} else if(queueNumber > 1){
-	// 		console.log("Cant display immediately");
-	// 		setTimeout(function(){
-	// 			smsDiv.html(msg);
-	// 			checkToResetLoop(queueNumber,msg);
-	// 		}, outrageTimerDuration*queueNumber)
-	// 	}
-		
-	// })
-
-	// function stopLoopInterval(){
-	// 	clearInterval(outrageInterval);
-	// 	outrageLoopRunning = false;
-	// }
-
-	// function checkToResetLoop(id, msg){
-	// 	delete queuedOutrageObj[id];
-	// 	queueNumber--;
-	// 	console.log("UPDATED QUEUE NUMBER: "+queueNumber);
-	// 	setTimeout(function(){
-	// 		console.log("ADDED TO ARRAY")
-	// 		outrages.push(msg);
-	// 		if(queueNumber == 0){
-	// 			console.log("RESET LOOP");
-	// 			runOutrageLoop(msg);
-	// 		}
-	// 	}, outrageTimerDuration);
-	// }
-
-	// runOutrageLoop();
-
 	var queuedOutrageArray = [];
 
 	var queuedOutrageRunning = false;
@@ -205,10 +43,9 @@ $(document).ready(function(){
 
 		console.log("STARTED ARRAY LOOP");
 		outrageInterval = setInterval(function(){
-			//console.log("I'm HERE")
-			//console.log(outrageCount)
+
 			outrageLoopRunning = true;
-			smsDiv.html(outrages[outrageCount]);
+			smsDiv.html(outrages[outrageCount]["msg"]);
 			if(outrageCount >= outrages.length-1){
 				outrageCount = 0;
 				return;
@@ -233,7 +70,7 @@ $(document).ready(function(){
 			//console.log(outrageCount)
 			queuedOutrageRunning = true;
 			//smsDiv.html(queuedOutrageArray[queuedOutrageCount]);
-			smsDiv.html(queuedOutrageArray[0])
+			smsDiv.html(queuedOutrageArray[0]["msg"])
 			// if(queuedOutrageCount >= queuedOutrageArray.length-1){
 			// 	runOutrageLoop();
 			// 	return;
@@ -271,7 +108,7 @@ $(document).ready(function(){
 
 	function runQueuedOutrages(msg){
 		if(queuedOutrageRunning == false){
-			smsDiv.html(msg);
+			smsDiv.html(msg["msg"]);
 			queuedOutrageRunning = true;
 			runQueuedOutrageLoop();
 		}

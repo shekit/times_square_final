@@ -8,6 +8,7 @@ var io = socket();
 var approvedOutrages = [];
 
 var rejectedOutrages = [];
+
 /* GET home page. */
 router.post('/message', function(req, res, next){
 
@@ -15,9 +16,11 @@ router.post('/message', function(req, res, next){
 	var phone = req.body.From;
 	var msg = req.body.Body || '';
 
-	//msg = msg.toLowerCase().trim();
-	io.emit("sms",msg);
-	io.emit("approval",msg)
+	// let admin know you've received text
+	if(msg){
+		io.emit("gotText",msg)
+	}
+	
 
 	console.log("Phone: " + phone);
 	console.log("Message: " + msg);
@@ -27,12 +30,26 @@ router.post('/message', function(req, res, next){
 })
 
 router.post('/approve', function(req,res,next){
-
-	var data = req.body;
 	console.log("APPROVED")
-	console.log(data);
+	
+	var data = req.body;
+
+	//add to approved outrages array
 	approvedOutrages.push(data)
-	io.emit("approvedSms",data)
+
+	var senderName = req.body.senderName;
+	var sms = req.body.msg
+
+	//send msg and name data if name is given
+	if(senderName){
+		io.emit("sms",{"name":senderName, "msg":sms})
+	} else {
+		io.emit("sms",{"name":'', "msg":sms})
+	}
+	
+
+	//send number of outrages to increment counter
+	io.emit("outrageCount", approvedOutrages.length);
 	console.log("APPROVED LIST")
 	console.log(approvedOutrages)
 	res.send("approved")
@@ -41,7 +58,6 @@ router.post('/approve', function(req,res,next){
 router.post('/reject', function(req, res, next){
 	var data = req.body;
 	console.log("REJECTED")
-	console.log(data);
 	rejectedOutrages.push(data);
 	console.log("REJECTED LIST")
 	console.log(rejectedOutrages)

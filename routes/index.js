@@ -5,7 +5,9 @@ var Subscriber = require("../models/subscriber");
 var socket = require('socket.io');
 var io = socket();
 
+var approvedOutrages = [];
 
+var rejectedOutrages = [];
 /* GET home page. */
 router.post('/message', function(req, res, next){
 
@@ -25,10 +27,24 @@ router.post('/message', function(req, res, next){
 })
 
 router.post('/approve', function(req,res,next){
+
+	var data = req.body;
+	console.log("APPROVED")
+	console.log(data);
+	approvedOutrages.push(data)
+	io.emit("approvedSms",data)
+	console.log("APPROVED LIST")
+	console.log(approvedOutrages)
 	res.send("approved")
 })
 
 router.post('/reject', function(req, res, next){
+	var data = req.body;
+	console.log("REJECTED")
+	console.log(data);
+	rejectedOutrages.push(data);
+	console.log("REJECTED LIST")
+	console.log(rejectedOutrages)
 	res.send("reject")
 })
 

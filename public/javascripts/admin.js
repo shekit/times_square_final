@@ -31,6 +31,7 @@ $(document).ready(function(){
 		})
 		.done(function(resp){
 			console.log(resp)
+			parent.hide();
 		})
 		.error(function(err){
 			alert("Error: "+ err)
@@ -61,6 +62,8 @@ $(document).ready(function(){
 		.error(function(err){
 			alert("Error: "+ err)
 		})
+
+		parent.hide();
 
 	})
 })

@@ -7,6 +7,8 @@ $(document).ready(function(){
 
 	var outrageCount = 0;
 
+	var displayCounter = 0;
+
 	var queuedOutrages=[];
 
 	var outrageLoopRunning = false;
@@ -14,9 +16,11 @@ $(document).ready(function(){
 	var outrageTimerDuration = 6000;
 	var outrageTimerDurationPadded = 6100; //keep about 100 ms more than above variable
 
+
 	var gifShowSceneTwo = 2500; // show next gif scene after so many seconds of showing name
 	var gifShowSceneThree = 4000; // show next gif scene after so many seconds of showing machine
 
+	var gifIntro = $(".gif-intro")
 	var gifs = $(".gif-bg")
 	var gifName = $("#gif-name")
 	var gifNoName = $("#gif-no-name")
@@ -29,6 +33,10 @@ $(document).ready(function(){
 
 	var queuedOutrageRunning = false;
 
+	function showIntroScreen(){
+		gifs.hide();
+		gifIntro.show();
+	}
 
 	function runOutrageLoop(){
 		
@@ -36,20 +44,26 @@ $(document).ready(function(){
 			stopQueuedOutrage();
 		}
 
-		console.log("LOOOPY DOOPY")
 
 		//console.log("STARTED ARRAY LOOP");
-		// outrageInterval = setInterval(function(){
+		outrageInterval = setInterval(function(){
 
-		// 	outrageLoopRunning = true;
-		// 	outrageText.html(outrages[outrageCount]["msg"]);
-		// 	if(outrageCount >= outrages.length-1){
-		// 		outrageCount = 0;
-		// 		return;
-		// 	}
+			outrageLoopRunning = true;
+
+			var gotName = outrages[outrageCount]["name"]
+			var msg = outrages[outrageCount]["msg"]
+
+			gifs.hide();
 			
-		// 	outrageCount++;
-		// }, outrageTimerDuration);
+			startAnimation(gotName, msg, false);
+
+			if(outrageCount >= outrages.length-1){
+				outrageCount = 0;
+				return;
+			}
+			
+			outrageCount++;
+		}, outrageTimerDurationPadded);
 	}
 
 
@@ -76,12 +90,13 @@ $(document).ready(function(){
 
 			queuedOutrageArray.splice(0,1);
 
-			startAnimation(gotName, msg)
+			startAnimation(gotName, msg, true)
 
 		}, outrageTimerDurationPadded);
+
 	}
 
-	function startAnimation(name,msg){
+	function startAnimation(name,msg,loopCheck){
 
 		if(name){
 			gifName.show();
@@ -102,16 +117,19 @@ $(document).ready(function(){
 			outrageText.html(msg)
 		}, gifShowSceneThree)
 
+
 		// tel outrage loop to start only if animation is over
 		// and there are no more queued outrages
-		setTimeout(function(){
-			if(queuedOutrageArray.length == 0){
-				//console.log("RESET LOOP")
-				runOutrageLoop();
-				return;
-			}
-			console.log("More in QUEUE")
-		}, outrageTimerDuration);
+		if(loopCheck){
+			setTimeout(function(){
+				if(queuedOutrageArray.length == 0){
+					//console.log("RESET LOOP")
+					runOutrageLoop();
+					return;
+				}
+				console.log("More in QUEUE")
+			}, outrageTimerDuration);
+		}
 	}
 
 
@@ -119,7 +137,6 @@ $(document).ready(function(){
 		//console.log("Stop queued array");
 		clearInterval(queuedInterval);
 		queuedOutrageRunning = false;
-		gifs.hide();
 	}
 
 	function runQueuedOutrages(msg){
@@ -142,12 +159,11 @@ $(document).ready(function(){
 	})
 
 	socket.on('count', function(msg){
-		outrageCount = msg;
+		displayCounter = msg;
 
-		$(".outrage-counter").html(outrageCount)
+		$(".outrage-counter").html(displayCounter)
 	})
 
 
-	runOutrageLoop();
 
 })

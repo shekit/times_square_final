@@ -1,0 +1,26 @@
+extends layout
+
+block style
+  link(rel='stylesheet', href='/stylesheets/style1.css')
+
+block content
+  div(id='gif-wrapper')
+    div(id="gif-intro")
+      img(src='/images/gif_intro.gif')
+    div(id="gif-name", class="gif-bg")
+      div(id='sender-name')
+      img(src='/images/gif_name.gif')
+    div(id="gif-no-name", class="gif-bg")
+      img(src='/images/gif_no_name.gif')
+    div(id="gif-machine", class="gif-bg")
+      img(src='/images/gif_machine.gif')
+    div(id="gif-output", class="gif-bg")
+      div(id="outrage")
+      img(src='/images/gif_output.gif')
+
+
+    
+
+
+block javascript
+  script(src='/javascripts/global.js')

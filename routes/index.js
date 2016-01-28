@@ -70,9 +70,8 @@ router.get('/nimda', function(req, res, next){
 
 
 router.get('/', function(req, res, next) {
-  	res.render('index', { title: 'Express' });
+  	res.render('index1');
 });
-
 
 
 module.exports = {"router":router, "io":io};

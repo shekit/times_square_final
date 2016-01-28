@@ -1,0 +1,41 @@
+body {
+  height:1464px;
+  width:1176px;
+  padding: 0;
+  margin: 0;
+}
+
+#gif-wrapper{
+  min-height: 100%;
+  min-width: 100%;
+  position: relative;
+}
+
+.gif-bg, #gif-intro {
+  height:1464px;
+  width:1176px;
+  position: absolute;
+  top:0;
+  left:0;
+}
+
+#gif-intro {
+  z-index: -1;
+}
+
+.gif-bg {
+  display: none;
+}
+
+#sender-name {
+  position: absolute;
+  top: 20%;
+  left: 30%;
+}
+
+#outrage {
+}
+
+img {
+  width: 100%;
+}

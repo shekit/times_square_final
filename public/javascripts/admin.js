@@ -30,7 +30,7 @@ $(document).ready(function(){
 		$.ajax({
 			"method": "POST",
 			"url": url+'approve',
-			"data":{"msg":msg,"senderName":senderName}
+			"data":{"msg":msg,"name":senderName}
 		})
 		.done(function(resp){
 			console.log(resp)
@@ -58,7 +58,7 @@ $(document).ready(function(){
 		$.ajax({
 			"method": "POST",
 			"url": url+'reject',
-			"data":{"msg":msg,"senderName":senderName}
+			"data":{"msg":msg,"name":senderName}
 		})
 		.done(function(resp){
 			console.log(resp)

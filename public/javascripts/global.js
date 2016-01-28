@@ -13,12 +13,14 @@ $(document).ready(function(){
 
 	var outrageLoopRunning = false;
 
-	var outrageTimerDuration = 6000;
-	var outrageTimerDurationPadded = 6100; //keep about 100 ms more than above variable
+	var autoStartLoopTimer = 10000;
+
+	var outrageTimerDuration = 15000;
+	var outrageTimerDurationPadded = 15100; //keep about 100 ms more than above variable
 
 
-	var gifShowSceneTwo = 2500; // show next gif scene after so many seconds of showing name
-	var gifShowSceneThree = 4000; // show next gif scene after so many seconds of showing machine
+	var gifShowSceneTwo = 5000; // show next gif scene after so many seconds of showing name
+	var gifShowSceneThree = 10000; // show next gif scene after so many seconds of showing machine
 
 	var gifIntro = $(".gif-intro")
 	var gifs = $(".gif-bg")
@@ -173,7 +175,7 @@ $(document).ready(function(){
 			//if there is data, start loop in 10 secs
 			setTimeout(function(){
 				runOutrageLoop();
-			}, 10000)
+			}, autoStartLoopTimer)
 		} else {
 			console.log("no data")
 		}

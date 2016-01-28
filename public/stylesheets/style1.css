@@ -1,27 +1,42 @@
 body {
-  height:1464px;
-  width:1176px;
   padding: 0;
   margin: 0;
 }
 
-#gif-wrapper{
-  min-height: 100%;
-  min-width: 100%;
+#wrapper1920{
+  width: 1920px;
+  height:1080px;
+  background: black;
+  margin-left: auto;
+  margin-right:auto;
+}
+
+#gif-wrapper {
+  margin-left: auto;
+  margin-right: auto;
+  width: 868px;
+  height:1080px;
+  overflow: hidden;
   position: relative;
 }
 
+/*#gif-wrapper{
+  min-height: 100%;
+  min-width: 100%;
+  position: relative;
+}*/
+
 .gif-bg, #gif-intro {
-  height:1464px;
-  width:1176px;
+  height:1080px;
+  width:868px;
   position: absolute;
   top:0;
   left:0;
 }
 
-#gif-intro {
+/*#gif-intro {
   z-index: -1;
-}
+}*/
 
 .gif-bg {
   display: none;
@@ -31,9 +46,19 @@ body {
   position: absolute;
   top: 20%;
   left: 30%;
+  font-size: 30px;
 }
 
 #outrage {
+  position: absolute;
+  top: 20%;
+  left: 30%;
+  font-size: 30px;
+  width: 300px;
+  height: 300px;
+  overflow: hidden;
+  text-align: left;
+  line-height: 125%;
 }
 
 img {

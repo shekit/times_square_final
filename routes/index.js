@@ -9,6 +9,12 @@ var approvedOutrages = [];
 
 var rejectedOutrages = [];
 
+io.on('connection', function(socket){
+	console.log("a user connected");
+
+	io.emit('outrageList',approvedOutrages)
+})
+
 /* GET home page. */
 router.post('/message', function(req, res, next){
 

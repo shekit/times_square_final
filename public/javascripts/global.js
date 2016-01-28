@@ -54,7 +54,7 @@ $(document).ready(function(){
 			var msg = outrages[outrageCount]["msg"]
 
 			gifs.hide();
-			
+
 			startAnimation(gotName, msg, false);
 
 			if(outrageCount >= outrages.length-1){
@@ -162,6 +162,22 @@ $(document).ready(function(){
 		displayCounter = msg;
 
 		$(".outrage-counter").html(displayCounter)
+	})
+
+	// get data from server to deal with page refresh
+	socket.on('outrageList', function(msg){
+		if(msg.length){
+			outrages = msg
+			console.log(msg)
+
+			//if there is data, start loop in 10 secs
+			setTimeout(function(){
+				runOutrageLoop();
+			}, 10000)
+		} else {
+			console.log("no data")
+		}
+
 	})
 
 

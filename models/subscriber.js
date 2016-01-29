@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var twilio = require('twilio');
-var config = require('../config/config');
+var config = require('../config/configdev');
 
 var client = twilio(config.accountSid, config.authToken);
 

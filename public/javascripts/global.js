@@ -189,8 +189,12 @@ $(document).ready(function(){
 
 			queuedOutrageRunning = true;
 
-			var gotName = queuedOutrageArray[0]["name"]
-			var msg = queuedOutrageArray[0]["msg"]
+			if(queuedOutrageArray.length){
+				var gotName = queuedOutrageArray[0]["name"]
+				var msg = queuedOutrageArray[0]["msg"]
+			} else {
+				return;
+			}
 
 			console.log("got name: " + gotName)
 

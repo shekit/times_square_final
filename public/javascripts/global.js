@@ -16,8 +16,8 @@ $(document).ready(function(){
 
 	
 
-	var outrageTimerDuration = 15000;
-	var outrageTimerDurationPadded = 15100; //keep about 100 ms more than above variable
+	var outrageTimerDuration = 22000;
+	var outrageTimerDurationPadded = 22100; //keep about 100 ms more than above variable
 
 
 	var gifShowSceneTwo = 5000; // show next gif scene after so many seconds of showing name
@@ -296,9 +296,8 @@ $(document).ready(function(){
 			.animate({
 				fontSize:"50px",
 				opacity: "1",
-				top:"45%"
+				top:"35%"
 			},1000)
-			.delay(5000)
 			
 
 		}, gifShowSceneThree)

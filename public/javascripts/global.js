@@ -44,7 +44,7 @@ $(document).ready(function(){
 
 	var queuedOutrageRunning = false;
 
-	var introScreenInterval = 60000;
+	var introScreenInterval = 180000;
 	var introScreenShowing = false;
 	var introScreenDuration = 10000;
 

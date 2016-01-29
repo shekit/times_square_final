@@ -149,8 +149,11 @@ $(document).ready(function(){
 		if(outrageInterval){
 			clearInterval(outrageInterval);
 		}
+		loopy();
 		//console.log("STARTED ARRAY LOOP");
-		outrageInterval = setInterval(function(){
+		outrageInterval = setInterval(loopy, outrageTimerDurationPadded);
+
+		function loopy(){
 			console.log("STARTED LOOP")
 			outrageLoopRunning = true;
 
@@ -167,7 +170,7 @@ $(document).ready(function(){
 			}
 			
 			outrageCount++;
-		}, outrageTimerDurationPadded);
+		}
 	}
 
 
@@ -184,7 +187,11 @@ $(document).ready(function(){
 			clearInterval(queuedInterval);
 
 		}
-		queuedInterval = setInterval(function(){
+		toopy();
+		
+		queuedInterval = setInterval(toopy, outrageTimerDurationPadded);
+
+		function toopy(){
 			//console.log("IN INTERVAL")
 
 			queuedOutrageRunning = true;
@@ -204,7 +211,7 @@ $(document).ready(function(){
 
 			startAnimation(gotName, msg, true)
 
-		}, outrageTimerDurationPadded);
+		}
 
 	}
 

@@ -2,7 +2,7 @@ $(document).ready(function(){
 
 	var socket = io();
 
-	var outrages = [{"name":"regular","msg":"just an outrage"},{"name":"regular2","msg":"hello world"}];
+	var outrages = [];
 
 	var outrageCount = 0;
 
@@ -40,7 +40,7 @@ $(document).ready(function(){
 	var funnelInArray = $(".funnel-in")
 	var funnelOutArray = $(".funnel-out")
 
-	var queuedOutrageArray = [{"name":"QUEUE 1","msg":"IN THIS QUEUE"},{"name":"QUEUE 2","msg":"STILL IN QEUEU"}];
+	var queuedOutrageArray = [];
 
 	var queuedOutrageRunning = false;
 

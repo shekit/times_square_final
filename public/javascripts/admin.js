@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	var socket = io();
 
-	var url = "http://localhost:3000/"
+	var url = "http://104.131.178.129:3000/"
 
 
 	//display incoming msgs when notified by server

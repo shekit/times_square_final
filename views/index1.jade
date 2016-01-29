@@ -1,27 +1,56 @@
 extends layout
 
 block style
+  link(rel='stylesheet', type='text/css', href='https://fonts.googleapis.com/css?family=Anton')
   link(rel='stylesheet', href='/stylesheets/style1.css')
 
 block content
   div(id='wrapper1920')
     div(id='gif-wrapper')
       div(id="gif-intro")
-        img(src='/images/gif_intro.gif')
+        img(src='/images/final/gif_intro1.gif', class="img-intro")
+        img(src='/images/final/gif_intro2.gif', class="img-intro")
+        img(src='/images/final/gif_intro3.gif', class="img-intro")
+        img(src='/images/final/gif_intro4.gif', class="img-intro")
+
       div(id="gif-name", class="gif-bg")
+        div(class='header')
+          img(src='/images/final/sign.png')
         div(id='sender-name')
-        img(src='/images/gif_name1.gif')
+        img(src='/images/final/bg1.png', class="img-name")
+        img(src='/images/final/funnel_in_down1.gif', class='funnel-in')
+        img(src='/images/final/bg2.png', class="img-name")
+        img(src='/images/final/funnel_in_down2.gif', class='funnel-in')
+        img(src='/images/final/bg3.png', class="img-name")
+        img(src='/images/final/funnel_in_down3.gif', class='funnel-in')
+        img(src='/images/final/bg4.png', class="img-name")
+        img(src='/images/final/funnel_in_down4.gif', class='funnel-in')
       div(id="gif-no-name", class="gif-bg")
-        img(src='/images/gif_no_name.gif')
+        div(class='header')
+          img(src='/images/final/sign.png')
+        img(src='/images/final/gif_no_name1.gif', class="img-no-name")
+        img(src='/images/final/gif_no_name2.gif', class="img-no-name")
+        img(src='/images/final/gif_no_name3.gif', class="img-no-name")
+        img(src='/images/final/gif_no_name4.gif', class="img-no-name")
       div(id="gif-machine", class="gif-bg")
-        img(src='/images/gif_machine.gif')
+        div(class='header')
+          img(src='/images/final/sign.png')
+        img(src='/images/final/gif_machine1.gif', class="img-machine")
+        img(src='/images/final/gif_machine2.gif', class="img-machine")
+        img(src='/images/final/gif_machine3.gif', class="img-machine")
+        img(src='/images/final/gif_machine4.gif', class="img-machine")
       div(id="gif-output", class="gif-bg")
+        div(class='header')
+          img(src='/images/final/sign.png')
         div(id="outrage")
-        img(src='/images/gif_output.gif')
-
-
-    
-
+        img(src='/images/final/bg1.png', class="img-output")
+        img(src='/images/final/funnel_in_down1.gif', class='funnel-out')
+        img(src='/images/final/bg2.png', class="img-output")
+        img(src='/images/final/funnel_in_down2.gif', class='funnel-out')
+        img(src='/images/final/bg3.png', class="img-output")
+        img(src='/images/final/funnel_in_down3.gif', class='funnel-out')
+        img(src='/images/final/bg4.png', class="img-output")
+        img(src='/images/final/funnel_in_down4.gif', class='funnel-out')
 
 block javascript
   script(src='/javascripts/global.js')

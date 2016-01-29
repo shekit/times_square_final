@@ -1,6 +1,7 @@
 body {
   padding: 0;
   margin: 0;
+  font-family: "Anton", Arial, sans-serif;
 }
 
 #wrapper1920{
@@ -11,7 +12,6 @@ body {
   margin-right:auto;
 }
 
-
 #gif-wrapper {
   margin-left: auto;
   margin-right: auto;
@@ -21,12 +21,6 @@ body {
   position: relative;
 }
 
-/*#gif-wrapper{
-  min-height: 100%;
-  min-width: 100%;
-  position: relative;
-}*/
-
 .gif-bg, #gif-intro {
   height:1080px;
   width:868px;
@@ -35,31 +29,71 @@ body {
   left:0;
 }
 
-/*#gif-intro {
-  z-index: -1;
-}*/
+#gif-intro {
+
+}
 
 .gif-bg {
   display: none;
 }
 
-#sender-name {
+#gif-name {
+  font-size: 32px
+}
+
+
+#sender-name, #trial {
+  width: 100%;
+  position: absolute;  
+  text-align: center;
+  height:300px;
+
+  /* animated values */
+  font-size: 0;
+  top: 40%;
+  opacity: 0;
+}
+
+.header {
   position: absolute;
-  top: 20%;
-  left: 30%;
-  font-size: 30px;
+  top: 0;
+  left: 0;
+}
+
+.funnel-in, .funnel-out {
+  position: absolute;
+  left:0;
+  top:0;
 }
 
 #outrage {
+  
   position: absolute;
-  top: 20%;
-  left: 30%;
-  font-size: 30px;
-  width: 300px;
-  height: 300px;
+  width: 650px;
+  padding-left: 109px;
+  padding-right: 109px;
+  height: 500px;
+  overflow: hidden;
+  text-align: center;
+  line-height: 125%;
+
+  /* animated values*/
+  font-size: 0;
+  top: 90%;
+  opacity: 0;
+}
+
+#trial-outrage {
+  font-size: 0;
+  position: absolute;
+  top: 45%;
+  left: 10%;
+  width: 450px;
+  height: 450px;
   overflow: hidden;
   text-align: left;
   line-height: 125%;
+
 }
 
 img {

@@ -2,18 +2,19 @@ $(document).ready(function(){
 
 	var socket = io();
 
-
-	var outrages = [];
+	var outrages = [{"name":"regular","msg":"just an outrage"},{"name":"regular2","msg":"hello world"}];
 
 	var outrageCount = 0;
 
 	var displayCounter = 0;
 
-	var queuedOutrages=[];
+	var numOfVariations = 4;
 
 	var outrageLoopRunning = false;
 
 	var autoStartLoopTimer = 10000;
+
+	
 
 	var outrageTimerDuration = 15000;
 	var outrageTimerDurationPadded = 15100; //keep about 100 ms more than above variable
@@ -22,8 +23,8 @@ $(document).ready(function(){
 	var gifShowSceneTwo = 5000; // show next gif scene after so many seconds of showing name
 	var gifShowSceneThree = 10000; // show next gif scene after so many seconds of showing machine
 
-	var gifIntro = $(".gif-intro")
 	var gifs = $(".gif-bg")
+	var gifIntro = $("#gif-intro")
 	var gifName = $("#gif-name")
 	var gifNoName = $("#gif-no-name")
 	var gifMachine = $("#gif-machine")
@@ -31,14 +32,113 @@ $(document).ready(function(){
 	var senderName = $("#sender-name");
 	var outrageText = $("#outrage");
 
-	var queuedOutrageArray = [];
+	var introGifArray = $(".img-intro")
+	var nameGifArray = $(".img-name")
+	var noNameGifArray = $(".img-no-name")
+	var machineGifArray = $(".img-machine")
+	var outputGifArray = $(".img-output")
+	var funnelInArray = $(".funnel-in")
+	var funnelOutArray = $(".funnel-out")
+
+	var queuedOutrageArray = [{"name":"QUEUE 1","msg":"IN THIS QUEUE"},{"name":"QUEUE 2","msg":"STILL IN QEUEU"}];
 
 	var queuedOutrageRunning = false;
 
-	function showIntroScreen(){
-		gifs.hide();
-		gifIntro.show();
+	var introScreenInterval = 60000;
+	var introScreenShowing = false;
+	var introScreenDuration = 10000;
+
+    var introTimer = null;
+    var animOneTimer = null;
+    var animTwoTimer = null;
+    var outrageInterval = null;
+    var queuedInterval = null;
+
+	function resetCss(){
+		//reset css
 	}
+
+	// $("#trial-outrage").animate({
+	// 	fontSize:"34px",
+	// 	left:"45%",
+	// 	top:"30%"
+	// },1500)
+
+	function showIntroScreen(){
+		console.log("INTRO")
+		introScreenShowing = true;
+		
+		if(outrageLoopRunning){
+			console.log("STOP LOOP")
+			stopLoopInterval();
+		}
+		
+		if(queuedOutrageRunning){
+			console.log("STOP QUEUED")
+			stopQueuedOutrage();
+		}
+		if(animOneTimer){
+			console.log("CLEARED ANIM ONE")
+			clearTimeout(animOneTimer);
+			animOneTimer=null
+		}
+		if(animTwoTimer){
+			console.log("CLEARED ANIM TWO")
+			clearTimeout(animTwoTimer);
+			animTwoTimer=null
+		}
+
+		
+		
+		
+		// show random bg img
+		gifs.hide();
+		var num = Math.floor(Math.random()*numOfVariations);
+		introGifArray.hide();
+		$(introGifArray[num]).show();
+
+		// after duration check if any msgs have piled up
+		// start loop of piled up msgs or run regular loop
+		if(introTimer){
+			clearTimeout(introTimer);
+			introTimer = null;
+		}
+
+		introTimer = setTimeout(function(){
+			if(queuedOutrageArray.length>0 && queuedOutrageRunning == false){
+				console.log("SHOW QUEUE")
+				introScreenShowing = false;
+				runQueuedOutrages();
+			} else if(outrages.length>0 && outrageLoopRunning == false){
+				console.log("SHOW LOOP")
+				introScreenShowing = false;
+				runOutrageLoop();
+			} else if(outrageLoopRunning == false && queuedOutrageRunning == false){
+				//if no msg has come in then restart
+				console.log("NOTHING TO SHOW")
+				showIntroScreen();
+			}
+
+		}, introScreenDuration)
+	}
+
+	function runIntroScreenLoop(){
+
+		introInterval = setInterval(function(){
+			
+			if(!introScreenShowing){
+				console.log("INTRO LOOP")
+				showIntroScreen();
+			}
+			
+		}, introScreenInterval)
+	}
+
+	// show intro screen on startup
+	showIntroScreen();
+	runIntroScreenLoop();
+
+
 
 	function runOutrageLoop(){
 		
@@ -46,10 +146,12 @@ $(document).ready(function(){
 			stopQueuedOutrage();
 		}
 
-
+		if(outrageInterval){
+			clearInterval(outrageInterval);
+		}
 		//console.log("STARTED ARRAY LOOP");
 		outrageInterval = setInterval(function(){
-
+			console.log("STARTED LOOP")
 			outrageLoopRunning = true;
 
 			var gotName = outrages[outrageCount]["name"]
@@ -78,6 +180,10 @@ $(document).ready(function(){
 
 	function runQueuedOutrageLoop(){
 		//console.log("STARTED queued Array");
+		if(queuedInterval){
+			clearInterval(queuedInterval);
+
+		}
 		queuedInterval = setInterval(function(){
 			//console.log("IN INTERVAL")
 
@@ -100,23 +206,97 @@ $(document).ready(function(){
 
 	function startAnimation(name,msg,loopCheck){
 
+		var randomGif = Math.floor(Math.random()*numOfVariations); //get random number to vary gif images
+
+		outrageText
+		.animate({
+				opacity: "0"
+			})
+			.delay(50)
+			.animate({
+				top: "90%",
+				fontSize: "0"
+			})
+
 		if(name){
+			//hide and show random img
+			nameGifArray.hide();
+			funnelInArray.hide();
+
+			$(nameGifArray[randomGif]).show();
+			$(funnelInArray[randomGif]).show();
+
 			gifName.show();
-			senderName.html(name)
+			senderName.html(name);
+
+			senderName
+			.delay(200)
+			.animate({
+				fontSize:"100px",
+				opacity: "1"
+			},200)
+			.delay(2700)
+			.animate({
+				fontSize:"40px",
+				top:"90%"
+			},1500)
+			.animate({
+				fontSize:"0",
+				opacity:"0"
+			})
+			.delay(50)
+			.animate({
+				top:"40%"
+			})
 		} else {
+			noNameGifArray.hide();
+			$(noNameGifArray[randomGif]).show();
+
 			gifNoName.show();
 		}
 
-		setTimeout(function(){
+		if(animOneTimer){
+			console.log("CLEARED ANIM ONE INSIDE")
+			clearTimeout(animOneTimer);
+			animOneTimer=null
+		}
+
+		animOneTimer = setTimeout(function(){
 			gifName.hide();
 			gifNoName.hide();
+
+			machineGifArray.hide();
+			$(machineGifArray[randomGif]).show();
+
 			gifMachine.show();
 		}, gifShowSceneTwo)
 
-		setTimeout(function(){
+		if(animTwoTimer){
+			console.log("CLEARED ANIM TWO INSIDE")
+			clearTimeout(animTwoTimer);
+			animTwoTimer=null
+		}
+		animTwoTimer = setTimeout(function(){
 			gifMachine.hide();
+
+			outputGifArray.hide();
+			funnelOutArray.hide();
+			$(outputGifArray[randomGif]).show();
+			$(funnelOutArray[randomGif]).show();
+
 			gifOutput.show();
-			outrageText.html(msg)
+			outrageText.html(msg);
+
+			outrageText
+			.delay(500)
+			.animate({
+				fontSize:"50px",
+				opacity: "1",
+				top:"45%"
+			},1000)
+			.delay(5000)
+			
+
 		}, gifShowSceneThree)
 
 
@@ -124,7 +304,7 @@ $(document).ready(function(){
 		// and there are no more queued outrages
 		if(loopCheck){
 			setTimeout(function(){
-				if(queuedOutrageArray.length == 0){
+				if(queuedOutrageArray.length == 0 && outrageLoopRunning==false){
 					//console.log("RESET LOOP")
 					runOutrageLoop();
 					return;
@@ -141,7 +321,7 @@ $(document).ready(function(){
 		queuedOutrageRunning = false;
 	}
 
-	function runQueuedOutrages(msg){
+	function runQueuedOutrages(){
 		if(queuedOutrageRunning == false){
 			queuedOutrageRunning = true;
 			runQueuedOutrageLoop();
@@ -157,7 +337,10 @@ $(document).ready(function(){
 		queuedOutrageArray.push(msg);
 		outrages.push(msg);
 
-		runQueuedOutrages(msg);
+		if(!introScreenShowing){
+			runQueuedOutrages();
+		}
+		
 	})
 
 	socket.on('count', function(msg){
@@ -173,13 +356,18 @@ $(document).ready(function(){
 			console.log(msg)
 
 			//if there is data, start loop in 10 secs
+
 			setTimeout(function(){
-				runOutrageLoop();
-			}, autoStartLoopTimer)
+				if(!outrageLoopRunning){
+					runOutrageLoop();
+				}
+			}, introScreenDuration)
 		} else {
 			console.log("no data")
 		}
 	})
+
+
 
 
 

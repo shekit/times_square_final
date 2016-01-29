@@ -43,12 +43,12 @@ router.post('/approve', function(req,res,next){
 	//add to approved outrages array
 	approvedOutrages.push(data)
 
-	var senderName = req.body.senderName;
+	var name = req.body.name;
 	var sms = req.body.msg
 
 	//send msg and name data if name is given
-	if(senderName){
-		io.emit("sms",{"name":senderName, "msg":sms})
+	if(name){
+		io.emit("sms",{"name":name, "msg":sms})
 	} else {
 		io.emit("sms",{"name":'', "msg":sms})
 	}

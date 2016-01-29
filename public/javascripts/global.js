@@ -314,9 +314,7 @@ $(document).ready(function(){
 		// tel outrage loop to start only if animation is over
 		// and there are no more queued outrages
 		if(loopCheck){
-			if(animThreeTimer){
-				clearTimeout(animThreeTimer)
-			}
+			
 			animThreeTimer = setTimeout(function(){
 				if(queuedOutrageArray.length == 0 && outrageLoopRunning==false){
 					//console.log("RESET LOOP")
